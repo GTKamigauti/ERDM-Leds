@@ -54,13 +54,13 @@ void setup(){
 void loop(){
 
 
-    PotValueLUZ = analogRead(POT_PINLUZ); //está lendo o potenciometro
-    PotValueLUZ = map(PotValueLUZ, 0, 1023, 0, 255); //mapeando os 1023 para 255
+    //PotValueLUZ = analogRead(POT_PINLUZ); //está lendo o potenciometro
+    //PotValueLUZ = map(PotValueLUZ, 0, 1023, 0, 255); //mapeando os 1023 para 255
 
-    FastLED.setBrightness(PotValueLUZ);
+    //FastLED.setBrightness(PotValueLUZ);
 
-    PotValueVELO = analogRead(Pot_PINVELO);
-    PotValueVELO = map(PotValueVELO, 0, 1023, 0, 2000); //2000 velo de agr
+    //PotValueVELO = analogRead(Pot_PINVELO);
+    //PotValueVELO = map(PotValueVELO, 0, 1023, 0, 2000); //2000 velo de agr
 
     click = digitalRead(BUTTON_PIN);
     
@@ -79,6 +79,13 @@ void loop(){
         for(int count = 1; count < (NUM_LEDS*2)-1; count++){ //rotina do led que faz ir e voltar
             passou = false; //booleano que define se o led passou
             while (state == true && passou == false){
+                PotValueVELO = analogRead(Pot_PINVELO);
+                PotValueVELO = map(PotValueVELO, 0, 1023, 0, 2000); //2000 velo de agr
+                
+                PotValueLUZ = analogRead(POT_PINLUZ); //está lendo o potenciometro
+                PotValueLUZ = map(PotValueLUZ, 0, 1023, 0, 255); //mapeando os 1023 para 255
+                FastLED.setBrightness(PotValueLUZ);
+
                 n++;
 
                 if (n > PotValueVELO){ // condicional que define a velocidade dos leds no lugar de um delay
